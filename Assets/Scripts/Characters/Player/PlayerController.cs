@@ -48,12 +48,13 @@ public class PlayerController : MonoBehaviour
     public GameObject guitar;                        // The guitar the player holds
     public GameObject recordHeld;                    // The record the player holds
     public BoomerangRecord recordToThrow;            // The gameobject that will be instantiated and thrown by the player
+    public GameObject trumpet;                      // The trumpet to be held by the player
+    public Transform bulletSpawnPoint;              // The place where all bullets spawn from
 
     Camera mainCamera;
 
     [HideInInspector]
     public CharacterController myCC;                 // The character controller on this object
-    //Rigidbody myRigidbody;
     [HideInInspector]
     public Transform myTransform;
     [HideInInspector]
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     public readonly PlayerStateGuitar playerStateGuitar = new PlayerStateGuitar();
     public readonly PlayerStateRecord playerStateRecord = new PlayerStateRecord();
+    public readonly PlayerStateTrumpet playerStateTrumpet = new PlayerStateTrumpet();
 
     // ----- An array that contains all of the states for the sake of cycling between them
     [HideInInspector]
@@ -92,10 +94,10 @@ public class PlayerController : MonoBehaviour
     {
         // Initilize the state array
         currentStateIndex = 0;
-        allStates = new PlayerStateBase[2];
+        allStates = new PlayerStateBase[3];
         allStates[0] = playerStateGuitar;
         allStates[1] = playerStateRecord;
-        //allStates[2] = 
+        allStates[2] = playerStateTrumpet;
 
         // Set references and components
         myCC = GetComponent<CharacterController>();
