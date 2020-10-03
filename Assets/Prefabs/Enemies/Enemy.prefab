@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 724241720}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolPoints: []
   agent: {fileID: 724241720}
+  player: {fileID: 0}
 --- !u!136 &724241726
 CapsuleCollider:
   m_ObjectHideFlags: 0
