@@ -303,7 +303,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -406,9 +406,11 @@ MonoBehaviour:
   gravityWhileFalling: -10
   sfxSwitchWarning: {fileID: 8300000, guid: f7315bb5631f614459ace5f301d42e39, type: 3}
   sfxOnSwitch: {fileID: 8300000, guid: b809d274ba2d3c344bee5d4727843b57, type: 3}
+  socket: {fileID: 3001761728961410948}
   guitarHitBox: {fileID: 317619688}
   guitar: {fileID: 8050906027251767367}
   recordHeld: {fileID: 2362627025257399278}
+  recordToThrow: {fileID: -633711228771697549, guid: 9df18097bd7a59b4b92977f7845762e1, type: 3}
   myCC: {fileID: 0}
   myTransform: {fileID: 0}
   myAnimator: {fileID: 0}

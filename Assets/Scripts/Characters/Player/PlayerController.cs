@@ -35,22 +35,24 @@ public class PlayerController : MonoBehaviour
 
     #region Audio
     [Header("Audio Clips")]
-    public AudioClip sfxSwitchWarning;
-    public AudioClip sfxOnSwitch;
+    public AudioClip sfxSwitchWarning;              // Plays right before switching states
+    public AudioClip sfxOnSwitch;                   // Plays upon switching states
 
     #endregion
 
     #region Components and References
 
     [Header("References")]
-    public Collider guitarHitBox;                          // The range of the guitar attack. 
-    public GameObject guitar;                              // The guitar the player holds
-    public GameObject recordHeld;                          // The record the player holds
+    public Transform socket;                        // The empty game object that holds weapons
+    public Collider guitarHitBox;                    // The range of the guitar attack. 
+    public GameObject guitar;                        // The guitar the player holds
+    public GameObject recordHeld;                    // The record the player holds
+    public BoomerangRecord recordToThrow;            // The gameobject that will be instantiated and thrown by the player
 
     Camera mainCamera;
 
     [HideInInspector]
-    public CharacterController myCC;                       // The character controller on this object
+    public CharacterController myCC;                 // The character controller on this object
     //Rigidbody myRigidbody;
     [HideInInspector]
     public Transform myTransform;
