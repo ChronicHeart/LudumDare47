@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
 
     #region Audio
     [Header("Audio Clips")]
-    public AudioClip sfxStateSwitch;
+    public AudioClip sfxSwitchWarning;
+    public AudioClip sfxOnSwitch;
 
     #endregion
 
@@ -115,12 +116,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator CycleStates()
     {
         // Wait for a defined amount of time
-        yield return new WaitForSeconds(switchStateSeconds - sfxStateSwitch.length);
+        yield return new WaitForSeconds(switchStateSeconds - sfxSwitchWarning.length);
 
         // Play a sound effect
-        audioSource.PlayOneShot(sfxStateSwitch);
+        audioSource.PlayOneShot(sfxSwitchWarning);
 
-        yield return new WaitForSeconds(sfxStateSwitch.length);
+        yield return new WaitForSeconds(sfxSwitchWarning.length);
 
         // Add to the current state index. If it is larger than the array, set it to zero.
         // Then switch states based on the index. This will allow us to loop through all of the 
@@ -129,6 +130,9 @@ public class PlayerController : MonoBehaviour
         if (currentStateIndex > allStates.Length - 1)
             currentStateIndex = 0;
         SetState(allStates[currentStateIndex]);
+
+        // Play the sound for actually swapping weapons
+        audioSource.PlayOneShot(sfxOnSwitch);
 
         // Repeat the corroutine
         StartCoroutine(CycleStates());

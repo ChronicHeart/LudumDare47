@@ -390,10 +390,15 @@ MonoBehaviour:
   jumpForce: 1
   gravity: -9.18
   gravityWhileFalling: -10
-  sfxStateSwitch: {fileID: 8300000, guid: f7315bb5631f614459ace5f301d42e39, type: 3}
+  sfxSwitchWarning: {fileID: 8300000, guid: f7315bb5631f614459ace5f301d42e39, type: 3}
+  sfxOnSwitch: {fileID: 8300000, guid: b809d274ba2d3c344bee5d4727843b57, type: 3}
   guitarHitBox: {fileID: 317619688}
   guitar: {fileID: 8050906027251767367}
   recordHeld: {fileID: 2362627025257399278}
+  myCC: {fileID: 0}
+  myTransform: {fileID: 0}
+  myAnimator: {fileID: 0}
+  audioSource: {fileID: 0}
   switchStateSeconds: 5
 --- !u!1001 &669662478348977267
 PrefabInstance:
