@@ -14,6 +14,7 @@ public class PlayerStateTrumpet : PlayerStateBase
     {
         player.trumpet.SetActive(false);
         player.myAnimator.ResetTrigger("trumpet");
+        player.myAnimator.SetTrigger("exitState");
     }
 
     public override void Update(PlayerController player)

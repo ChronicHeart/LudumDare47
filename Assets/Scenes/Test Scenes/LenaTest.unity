@@ -963,6 +963,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3509406001279290583, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321268191881860717, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321268191881860717, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0032
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321268191881860717, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0038
+      objectReference: {fileID: 0}
     - target: {fileID: 5421670207346728186, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1010,6 +1026,26 @@ PrefabInstance:
     - target: {fileID: 5421670207346728191, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857879193353562698, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857879193353562698, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857879193353562698, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857879193353562698, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857879193353562698, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
