@@ -102,11 +102,24 @@ public class PlayerController : MonoBehaviour
         myCC.Move(move * Time.deltaTime * speed);
 
         // Update animations
+
+         move.Normalize();
+
+        move = transform.InverseTransformDirection(move);
+
+        myAnimator.SetFloat("speedX", move.x);
+        myAnimator.SetFloat("speedZ", move.z);
+
+        // ------ Old Code --------
+
+        /*
         float speedX = move.normalized.x;
         float speedZ = move.normalized.z;
 
         myAnimator.SetFloat("speedX", speedX);
         myAnimator.SetFloat("speedZ", speedZ);
+
+        */
 
         // Changes the height position of the player..
         if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer)
