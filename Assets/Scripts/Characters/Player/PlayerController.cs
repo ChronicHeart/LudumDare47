@@ -162,17 +162,6 @@ public class PlayerController : MonoBehaviour
         //Attack();
     }
 
-    /*
-    public void Attack()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            guitarHitBox.enabled = true;
-            myAnimator.SetTrigger("isAttacking");
-        }
-    }
-    */
-
     public void DisableHitbox()
     {
         guitarHitBox.enabled = false;
@@ -210,6 +199,8 @@ public class PlayerController : MonoBehaviour
 
         */
 
+        // ----- Disabled jumping
+        /*
         // Changes the height position of the player..
         if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer)
         {
@@ -217,7 +208,7 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = Mathf.Sqrt(jumpForce * -3.0f * gravity);
             //myAnimator.SetTrigger("isJumping");
         }
-
+        */
         if (playerVelocity.y > 0)
             playerVelocity.y += gravity * Time.deltaTime;
         else
