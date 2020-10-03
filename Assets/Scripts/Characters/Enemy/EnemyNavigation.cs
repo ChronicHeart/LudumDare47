@@ -12,15 +12,18 @@ public class EnemyNavigation : MonoBehaviour
 
     int curPoint = 0;
     bool reverseCourse = false;
+    bool playerDetected = false;
+    bool curDelay = false;
 
     public NavMeshAgent agent;
+    public GameObject player;
 
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
+        
         if (agent == null)
         {
             Debug.LogWarning(name + " does not have a NavMeshAgent component.");
@@ -30,7 +33,28 @@ public class EnemyNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(patrolPoints[curPoint].transform.position);
+        if (!playerDetected)
+        {
+            agent.SetDestination(patrolPoints[curPoint].transform.position);            
+        }
+        else
+        {
+            agent.SetDestination(player.transform.position);            
+        }
+
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position + new Vector3(0, 1, 0), transform.forward * 3);
+        Debug.DrawRay(transform.position + new Vector3(0, 1, 0), transform.forward * 3, Color.red);
+
+        if (Physics.Raycast(ray, out hit, 3))
+        {
+            if (hit.collider.tag == "Player")
+            {
+                playerDetected = true;
+                StopCoroutine("Delay");
+                StartCoroutine("Delay");
+            }           
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,21 +78,14 @@ public class EnemyNavigation : MonoBehaviour
             {
                 curPoint += 1;
             }
-            
-            
-            
         }
     }
 
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "PatrolPoint")
-        {
-            curPoint += 1;
-            if (curPoint >= patrolPoints.Length)
-            {
-                curPoint = 0;
-            }
-        }
-    }*/
+    IEnumerator Delay()
+    {        
+        //Debug.Log("Coroutine has started.");
+        yield return new WaitForSeconds(3.0f);
+        playerDetected = false;        
+    }
+    
 }
