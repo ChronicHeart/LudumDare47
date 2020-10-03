@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -34,30 +35,65 @@ public class PlayerController : MonoBehaviour
 
     #region Audio
     [Header("Audio Clips")]
-    [SerializeField]
-    AudioClip sfxJump;
+    public AudioClip sfxStateSwitch;
 
     #endregion
 
     #region Components and References
 
     [Header("References")]
-    [SerializeField]
-    Collider guitarHitBox;                          // The range of the guitar attack. 
+    public Collider guitarHitBox;                          // The range of the guitar attack. 
+    public GameObject guitar;                              // The guitar the player holds
+    public GameObject recordHeld;                          // The record the player holds
 
     Camera mainCamera;
 
-    CharacterController myCC;                       // The character controller on this object
+    [HideInInspector]
+    public CharacterController myCC;                       // The character controller on this object
     //Rigidbody myRigidbody;
-    Transform myTransform;
-    Animator myAnimator;
-    AudioSource audioSource;
+    [HideInInspector]
+    public Transform myTransform;
+    [HideInInspector]
+    public Animator myAnimator;
+    [HideInInspector]
+    public AudioSource audioSource;
+
+    #endregion
+
+    #region Player States
+
+    [Header("States")]
+    public float switchStateSeconds;                    // How long it takes us to switch states
+
+    private PlayerStateBase currentState;               // The current state the player is in
+    private PlayerStateBase lastState;                  // The previous state the player was in
+
+    // ----- All of the players possible states
+
+    public readonly PlayerStateGuitar playerStateGuitar = new PlayerStateGuitar();
+    public readonly PlayerStateRecord playerStateRecord = new PlayerStateRecord();
+
+    // ----- An array that contains all of the states for the sake of cycling between them
+    [HideInInspector]
+    public  PlayerStateBase[] allStates;
+    private int currentStateIndex = 0;              // Where we currently are in the arry
+
+    // ------ Accessors for the current and last state
+    public PlayerStateBase CurrentState { get { return currentState;} }
+    public PlayerStateBase LastState { get { return lastState;} }
 
     #endregion
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        // Initilize the state array
+        currentStateIndex = 0;
+        allStates = new PlayerStateBase[2];
+        allStates[0] = playerStateGuitar;
+        allStates[1] = playerStateRecord;
+        //allStates[2] = 
+
         // Set references and components
         myCC = GetComponent<CharacterController>();
         myTransform = transform;
@@ -65,16 +101,64 @@ public class PlayerController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
+        // Set the initial state of the player 
+        currentState = playerStateGuitar;
+
+        // Begin cycling between states
+        //InvokeRepeating("CycleStates", switchStateSeconds, switchStateSeconds);
+        StartCoroutine(CycleStates());
+
+        // Set a layer mask so that we only hit things marked as default
         layerMask = LayerMask.GetMask("Default");
+    }
+
+    IEnumerator CycleStates()
+    {
+        // Wait for a defined amount of time
+        yield return new WaitForSeconds(switchStateSeconds - sfxStateSwitch.length);
+
+        // Play a sound effect
+        audioSource.PlayOneShot(sfxStateSwitch);
+
+        yield return new WaitForSeconds(sfxStateSwitch.length);
+
+        // Add to the current state index. If it is larger than the array, set it to zero.
+        // Then switch states based on the index. This will allow us to loop through all of the 
+        // player's states
+        currentStateIndex++;
+        if (currentStateIndex > allStates.Length - 1)
+            currentStateIndex = 0;
+        SetState(allStates[currentStateIndex]);
+
+        // Repeat the corroutine
+        StartCoroutine(CycleStates());
+    }
+
+    public void SetState(PlayerStateBase newState)
+    {
+        // Set the last state to equal current state so that we have reference to it
+        lastState = currentState;
+
+        // Set the new state
+        currentState = newState;
+
+        // Call the exit method of the last state and the enter method of the current state
+        lastState.ExitState(this);
+        currentState.EnterState(this);
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
-        Attack();
+
+        // Preform whatever actions we need to do in Update based on our current state
+        currentState.Update(this);
+
+        //Attack();
     }
 
+    /*
     public void Attack()
     {
         if (Input.GetMouseButtonDown(0))
@@ -83,6 +167,7 @@ public class PlayerController : MonoBehaviour
             myAnimator.SetTrigger("isAttacking");
         }
     }
+    */
 
     public void DisableHitbox()
     {
@@ -148,25 +233,4 @@ public class PlayerController : MonoBehaviour
             myTransform.rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         }
     }
-
-    /*
-    public void Throw()
-    {
-
-        //Make sure arm socket is assigned
-        if(armSocket == null)
-        {
-            Debug.LogError("Arm socket not assigned");
-            return;
-        }
-
-        // Cancel function if socket does not have a child
-        Holdable heldObject = armSocket.GetComponentInChildren<Holdable>();
-        if (heldObject == null)
-            return;
-
-        heldObject.Detatch(throwStrength, torque, lift);
-
-    }
-    */
 }
