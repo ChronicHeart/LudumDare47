@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     #region Components and References
 
     [Header("References")]
-    public GameObject armSocket;
+    [SerializeField]
+    Collider guitarHitBox;                          // The range of the guitar attack. 
 
     Camera mainCamera;
 
@@ -65,15 +66,28 @@ public class PlayerController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         layerMask = LayerMask.GetMask("Default");
-
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        Attack();
     }
 
+    public void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            guitarHitBox.enabled = true;
+            myAnimator.SetTrigger("isAttacking");
+        }
+    }
+
+    public void DisableHitbox()
+    {
+        guitarHitBox.enabled = false;
+    }
 
     public void Move()
     {
@@ -88,11 +102,24 @@ public class PlayerController : MonoBehaviour
         myCC.Move(move * Time.deltaTime * speed);
 
         // Update animations
+
+         move.Normalize();
+
+        move = transform.InverseTransformDirection(move);
+
+        myAnimator.SetFloat("speedX", move.x);
+        myAnimator.SetFloat("speedZ", move.z);
+
+        // ------ Old Code --------
+
+        /*
         float speedX = move.normalized.x;
         float speedZ = move.normalized.z;
 
-        //myAnimator.SetFloat("SpeedX", speedX);
-        //myAnimator.SetFloat("SpeedZ", speedZ);
+        myAnimator.SetFloat("speedX", speedX);
+        myAnimator.SetFloat("speedZ", speedZ);
+
+        */
 
         // Changes the height position of the player..
         if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer)

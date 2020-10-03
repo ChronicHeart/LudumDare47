@@ -78,5 +78,7 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
         {
             Die();
         }
+
+        Debug.Log(name + ": Current HP is at " + CurrentHP);
     }
 }
