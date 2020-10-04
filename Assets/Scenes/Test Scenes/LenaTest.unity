@@ -681,7 +681,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29360
+  m_Name: pb_Mesh95054
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1147,10 +1147,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2414490072545848089, guid: 560d92ce693648a42964f144b439da94, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 84.6001
-      objectReference: {fileID: 0}
     - target: {fileID: 2414490073233993198, guid: 560d92ce693648a42964f144b439da94, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1159,9 +1155,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2414490073745956785, guid: 560d92ce693648a42964f144b439da94, type: 3}
+    - target: {fileID: 5132965361245502921, guid: 560d92ce693648a42964f144b439da94, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -63.80005
+      value: 0.2199707
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 560d92ce693648a42964f144b439da94, type: 3}

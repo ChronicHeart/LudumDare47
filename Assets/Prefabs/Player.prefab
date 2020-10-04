@@ -442,7 +442,7 @@ MonoBehaviour:
   myTransform: {fileID: 0}
   myAnimator: {fileID: 0}
   audioSource: {fileID: 0}
-  switchStateSeconds: 5
+  switchStateSeconds: 10
 --- !u!1 &7113432397983100346
 GameObject:
   m_ObjectHideFlags: 0
