@@ -11,9 +11,9 @@ public class EnemyNavigation : MonoBehaviour
     [SerializeField] GameObject[] patrolPoints;
 
     int curPoint = 0;
+    int attackPower = 5;
     bool reverseCourse = false;
-    bool playerDetected = false;
-    bool curDelay = false;
+    bool playerDetected = false;    
 
     public NavMeshAgent agent;
     public GameObject player;
@@ -43,10 +43,10 @@ public class EnemyNavigation : MonoBehaviour
         }
 
         RaycastHit hit;
-        Ray ray = new Ray(transform.position + new Vector3(0, 1, 0), transform.forward * 3);
-        Debug.DrawRay(transform.position + new Vector3(0, 1, 0), transform.forward * 3, Color.red);
+        Ray ray = new Ray(transform.position + new Vector3(0, 1, 0), transform.forward * 4);
+        Debug.DrawRay(transform.position + new Vector3(0, 1, 0), transform.forward * 4, Color.red);
 
-        if (Physics.Raycast(ray, out hit, 3))
+        if (Physics.Raycast(ray, out hit, 4))
         {
             if (hit.collider.tag == "Player")
             {
@@ -79,7 +79,22 @@ public class EnemyNavigation : MonoBehaviour
                 curPoint += 1;
             }
         }
+        
+        /*if (other.tag == "Player")
+        {
+            other.SendMessage("TakeDamage", attackPower, SendMessageOptions.DontRequireReceiver);
+            Debug.Log("Player has taken " + attackPower + " damage.");
+        }*/
     }
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.SendMessage("TakeDamage", attackPower, SendMessageOptions.DontRequireReceiver);
+            Debug.Log("Player has taken " + attackPower + " damage.");
+        }
+    }*/
 
     IEnumerator Delay()
     {        

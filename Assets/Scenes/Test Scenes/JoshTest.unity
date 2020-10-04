@@ -661,10 +661,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5421670207346728188, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: m_Radius
+      value: 0.29
+      objectReference: {fileID: 0}
     - target: {fileID: 5421670207346728191, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6913314671580460679, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+      propertyPath: myRenderer
+      value: 
+      objectReference: {fileID: 928816464}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
 --- !u!43 &163051213
@@ -2708,6 +2716,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &928816464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4043187113723438659, guid: 03e7537a87da3bc468fb94b6b70d3d26, type: 3}
+  m_PrefabInstance: {fileID: 116527404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &973294899
 Mesh:
   m_ObjectHideFlags: 0
@@ -3543,8 +3556,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

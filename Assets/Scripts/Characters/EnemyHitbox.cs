@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Author: Lena Taylor
-/// Date: 10/2/2020
-/// Purpose: To damage any damageable object that enters this trigger volume
-/// </summary>
-public class DamageHitbox : MonoBehaviour
+public class EnemyHitbox : MonoBehaviour
 {
     public int attackPower = 5;         // How much damage will this object do?
     public AudioClip sfxHit;
@@ -22,7 +17,7 @@ public class DamageHitbox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Make sure we don't damage the parent
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Enemy")
             return;
 
         // Damage the other object
@@ -38,7 +33,5 @@ public class DamageHitbox : MonoBehaviour
                 audioSource.Play();
             }
         }
-
-
     }
 }
