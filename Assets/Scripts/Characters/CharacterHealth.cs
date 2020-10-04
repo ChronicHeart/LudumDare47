@@ -25,6 +25,12 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
 
     #endregion
 
+    [Header("Audio")]
+    [SerializeField]
+    protected AudioClip sfxHurt;
+    [SerializeField]
+    protected AudioClip sfxDeath;
+
     #region Components and References
 
     protected Collider myCollider;                                    // The collider of this enemy
@@ -32,6 +38,7 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
     [SerializeField]
     protected GameObject myRenderer;                                // The visual display of this enemy 
     protected Animator animator;
+    protected AudioSource audioSource;
 
     #endregion
 
@@ -43,6 +50,7 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
         // Set references and components
         myCollider = GetComponent<Collider>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         if (myRenderer == null)
         {
             Debug.LogWarning(name + ": renderer has not been assigned!");
@@ -51,6 +59,9 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
 
     public virtual void Die()
     {
+        // Play death sfx
+        audioSource.PlayOneShot(sfxDeath);
+
         // Disable the renderer and collider so that the enemy can no longer be interacted with
         myRenderer.SetActive(false);
         myCollider.enabled = false;
@@ -78,6 +89,9 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
 
     public virtual void TakeDamage(int damageTaken)
     {
+        // Play sfx
+        audioSource.PlayOneShot(sfxHurt);
+
         // Take damage based on the given parameter
         CurrentHP -= damageTaken;
 

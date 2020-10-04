@@ -353,12 +353,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b77a04ddd0b2b43ae7689fdee894ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
-  bulletAmount: 3
+  bulletPrefab: {fileID: 1063513866032840893, guid: 9982a1dcfdc6bef4ba05630264cc1b2c, type: 3}
+  bulletAmount: 7
   bulletAttackPower: 2
-  bulletSpeed: 6
-  fireRate: 1
-  spread: 30
+  bulletSpeed: 3
+  fireRate: 1.5
+  spread: 180
   sfxTrumpetFire: {fileID: 8300000, guid: 108bad4cca7367e49a761ac41c457ec1, type: 3}
   bulletSpawnPoint: {fileID: 1348788276}
 --- !u!82 &4754012488068099353
