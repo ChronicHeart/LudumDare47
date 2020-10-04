@@ -352,7 +352,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SwordStateMachine
+  m_Name: GuitarStateMachine
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -3466015376200684289}
@@ -502,10 +502,10 @@ AnimatorStateMachine:
     m_Position: {x: 270, y: 30, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 4198284656275913436}
-    m_Position: {x: 300, y: 200, z: 0}
+    m_Position: {x: 300, y: 210, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 5917933078468729654}
-    m_Position: {x: 491.72888, y: 110.61496, z: 0}
+    m_Position: {x: 490, y: 110, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions:
   - {fileID: 1292979439142312749}
