@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,8 @@ public class UIScript : MonoBehaviour
     [SerializeField]
     Slider healthBar;               // The health bar of the player
     [SerializeField]
-    Image weaponImage;              // The weapon displayed in the UI
+    TextMeshProUGUI weaponText;         // The weapon information displayed to the player
+    //Image weaponImage;              // The weapon displayed in the UI
 
     PlayerController playerController;        // A reference to the player's controller
     PlayerHealth playerHealth;      // A reference to the player's health
@@ -44,7 +46,26 @@ public class UIScript : MonoBehaviour
 
     private void UpdateWeaponDisplay()
     {
-        Debug.Log("The player has swapped weapons");
+        //Debug.Log("The player has swapped weapons");
+        // Updated the weapon information based on the current state of the player
+        switch (playerController.CurrentStateIndex)
+        {
+            case 0:
+                weaponText.text = "Weapon: Guitar";
+                break;
+
+            case 1:
+                weaponText.text = "Weapon: Record";
+                break;
+
+            case 2:
+                weaponText.text = "Weapon: Trumpet";
+                break;
+
+            default:
+                weaponText.text = "Weapon: Null";
+                break;
+        }
     }
 
     private void OnDestroy()

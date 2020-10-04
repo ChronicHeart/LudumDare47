@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public  PlayerStateBase[] allStates;
     private int currentStateIndex = 0;              // Where we currently are in the arry
+    public int CurrentStateIndex { get { return currentStateIndex; } }
 
     // ------ Accessors for the current and last state
     public PlayerStateBase CurrentState { get { return currentState;} }
