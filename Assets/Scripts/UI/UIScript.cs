@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
@@ -10,10 +11,15 @@ public class UIScript : MonoBehaviour
     Slider healthBar;               // The health bar of the player
     [SerializeField]
     TextMeshProUGUI weaponText;         // The weapon information displayed to the player
-    //Image weaponImage;              // The weapon displayed in the UI
+    [SerializeField]
+    GameObject playerUI;                // Holds all information presented during normal play
+    [SerializeField]
+    GameObject pausePanel;              // Holds the pause menu
 
     PlayerController playerController;        // A reference to the player's controller
     PlayerHealth playerHealth;      // A reference to the player's health
+
+    bool isPaused;
 
     private void Awake()
     {
@@ -25,6 +31,8 @@ public class UIScript : MonoBehaviour
         // Subscribed to the events for changing states and changing HP
         playerHealth.PlayerHealthChanged += UpdateHealth;
         playerController.PlayerStateChanged += UpdateWeaponDisplay;
+
+        isPaused = false;
     }
 
     private void Start()
@@ -37,6 +45,32 @@ public class UIScript : MonoBehaviour
 
         // Set the initial weapon display based on the current weapon
         UpdateWeaponDisplay();
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Pause"))
+        {
+            TogglePause();
+        }
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            pausePanel.SetActive(true);
+            playerUI.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pausePanel.SetActive(false);
+            playerUI.SetActive(true);
+        }
     }
 
     private void UpdateHealth()
@@ -73,6 +107,13 @@ public class UIScript : MonoBehaviour
         // Unsubscribe from any events
         playerHealth.PlayerHealthChanged -= UpdateHealth;
         playerController.PlayerStateChanged -= UpdateWeaponDisplay;
+    }
+
+    //-------------- To be called by other scripts
+
+    public void LoadSceneById(int sceneID)
+    {
+        SceneManager.LoadScene(sceneID);
     }
 }
 
