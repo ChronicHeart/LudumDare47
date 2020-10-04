@@ -53,7 +53,8 @@ public class PlayerStateRecord : PlayerStateBase
     public void CatchRecord()
     {
         // Make the record reappear in the player's hand
-        playerRef.recordHeld.SetActive(true);
+        if(playerRef.CurrentState == this)
+            playerRef.recordHeld.SetActive(true);
 
         // Destroy the boomerang if it isn't already gone
         if (boomerang != null)

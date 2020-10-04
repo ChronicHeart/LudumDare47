@@ -5,7 +5,6 @@ public class PlayerStateGuitar : PlayerStateBase
     public override void EnterState(PlayerController player)
     {
         player.guitar.SetActive(true);
-        //player.myAnimator.ResetTrigger("exitState");
         player.myAnimator.SetTrigger("guitar");
     }
 

@@ -33,10 +33,23 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region Trumpet Variables
+
+    [Header("Trumpet")]
+    public GameObject bulletPrefab;                     // The bullet to be  spawned
+    public int bulletAmount;                            // How many bullets will spawn when the trumpet shoots
+    public int bulletAttackPower;                       // How much damage the bullets will do
+    public int bulletSpeed;                             // How quickly the bullet moves
+    public float fireRate = 1f;                         // Minimum seconds between blasts
+    public float spread;                                // The angle of the blast
+
+    #endregion
+
     #region Audio
     [Header("Audio Clips")]
     public AudioClip sfxSwitchWarning;              // Plays right before switching states
     public AudioClip sfxOnSwitch;                   // Plays upon switching states
+    public AudioClip sfxTrumpetFire;                // Plays when the trumpet fires
 
     #endregion
 
@@ -48,12 +61,13 @@ public class PlayerController : MonoBehaviour
     public GameObject guitar;                        // The guitar the player holds
     public GameObject recordHeld;                    // The record the player holds
     public BoomerangRecord recordToThrow;            // The gameobject that will be instantiated and thrown by the player
+    public GameObject trumpet;                      // The trumpet to be held by the player
+    public Transform bulletSpawnPoint;              // The place where all bullets spawn from
 
     Camera mainCamera;
 
     [HideInInspector]
     public CharacterController myCC;                 // The character controller on this object
-    //Rigidbody myRigidbody;
     [HideInInspector]
     public Transform myTransform;
     [HideInInspector]
@@ -75,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
     public readonly PlayerStateGuitar playerStateGuitar = new PlayerStateGuitar();
     public readonly PlayerStateRecord playerStateRecord = new PlayerStateRecord();
+    public readonly PlayerStateTrumpet playerStateTrumpet = new PlayerStateTrumpet();
 
     // ----- An array that contains all of the states for the sake of cycling between them
     [HideInInspector]
@@ -92,10 +107,10 @@ public class PlayerController : MonoBehaviour
     {
         // Initilize the state array
         currentStateIndex = 0;
-        allStates = new PlayerStateBase[2];
+        allStates = new PlayerStateBase[3];
         allStates[0] = playerStateGuitar;
         allStates[1] = playerStateRecord;
-        //allStates[2] = 
+        allStates[2] = playerStateTrumpet;
 
         // Set references and components
         myCC = GetComponent<CharacterController>();
@@ -162,6 +177,21 @@ public class PlayerController : MonoBehaviour
         currentState.Update(this);
 
         //Attack();
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            SetState(playerStateGuitar);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SetState(playerStateRecord);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            SetState(playerStateTrumpet);
+        }
     }
 
     public void DisableHitbox()
