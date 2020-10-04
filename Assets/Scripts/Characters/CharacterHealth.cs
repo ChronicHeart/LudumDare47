@@ -65,10 +65,7 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
         // Disable the renderer and collider so that the enemy can no longer be interacted with
         myRenderer.SetActive(false);
         myCollider.enabled = false;
-        if (tag == "Enemy")
-        {
-            Destroy(gameObject);
-        }
+        
     }
 
     public virtual void HealHP(int hpRestored)
@@ -102,5 +99,14 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
         }
 
         //Debug.Log(name + ": Current HP is at " + CurrentHP);
+    }
+
+    IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }
