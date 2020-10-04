@@ -10,6 +10,8 @@ public class BulletScript : MonoBehaviour
 
     public float decayRate = 5f;
 
+    public string alignment = "Player";
+
     private void Start()
     {
         Invoke("DestroySelf", decayRate);
@@ -28,7 +30,19 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") == false && other.isTrigger == false)
+        // If the other object is a bullet, destory this
+        BulletScript otherBullet = other.GetComponent<BulletScript>();
+        if(otherBullet != null)
+        {
+            if (otherBullet.alignment != alignment)
+            {
+                Destroy(other);
+                DestroySelf();
+                return;
+            }
+        }
+
+        if(other.CompareTag(alignment) == false && other.isTrigger == false)
         {
             other.SendMessage("TakeDamage", attackPower, SendMessageOptions.DontRequireReceiver);
             CancelInvoke();

@@ -82,7 +82,8 @@ public class BossController : MonoBehaviour
 
         for (int i = 0; i < bullets.Length; i++)
         {
-            GameObject bullet = GameObject.Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, Quaternion.identity);
+            Vector3 origin = new Vector3(bulletSpawnPoint.transform.position.x, 1, bulletSpawnPoint.transform.position.z);
+            GameObject bullet = GameObject.Instantiate(bulletPrefab, origin, Quaternion.identity);
 
             //bullets.Add(bullet);
             bullets[i] = bullet;
