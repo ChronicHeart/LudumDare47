@@ -8,6 +8,12 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
+    #region Delegates and Events
+    public delegate void States();
+    public event States PlayerStateChanged;                     // This event is fired whenever the player changes states
+
+    #endregion
+
     #region Enums
     //public enum PlayerDirection { Right = 1, Left = -1};
     #endregion
@@ -166,6 +172,9 @@ public class PlayerController : MonoBehaviour
         // Call the exit method of the last state and the enter method of the current state
         lastState.ExitState(this);
         currentState.EnterState(this);
+
+        // Fire the changed state event
+        PlayerStateChanged();
     }
 
     // Update is called once per frame

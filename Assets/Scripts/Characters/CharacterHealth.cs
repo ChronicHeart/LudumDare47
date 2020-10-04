@@ -13,7 +13,11 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
     [SerializeField]
     protected int maxHP = 10;                                              // The maximum HP this object can start with
     protected int m_currentHP;
-    protected int CurrentHP                                                // The accessor for current health. Use this instead of calling health directly
+    public int MaxHP
+    {
+        get { return maxHP; }
+    }
+    public int CurrentHP                                                // The accessor for current health. Use this instead of calling health directly
     {
         get { return m_currentHP; }
         set { m_currentHP = Mathf.Clamp(value, 0, maxHP); }
@@ -31,7 +35,7 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
 
     #endregion
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         // Initialize health
         CurrentHP = maxHP;
@@ -83,6 +87,6 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
             Die();
         }
 
-        Debug.Log(name + ": Current HP is at " + CurrentHP);
+        //Debug.Log(name + ": Current HP is at " + CurrentHP);
     }
 }
