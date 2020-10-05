@@ -28,6 +28,7 @@ public class BossActivationScript : MonoBehaviour
             sceneAudio.Stop();
             sceneAudio.clip = bossMusic;
             sceneAudio.Play();
+            sceneAudio.volume = 0.5f;
         }
     }
 }

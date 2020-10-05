@@ -31,6 +31,12 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
     [SerializeField]
     protected AudioClip sfxDeath;
 
+    [Header("UI Canvas")]
+    [SerializeField]
+    GameObject playerUICanvas;
+    [SerializeField]
+    GameObject winScreenCanvas;
+
     #region Components and References
 
     protected Collider myCollider;                                    // The collider of this enemy
@@ -105,6 +111,16 @@ public class CharacterHealth : MonoBehaviour, IDamageable<int>
     IEnumerator DeathDelay()
     {
         yield return new WaitForSeconds(0.5f);
+
+        if (tag == "Boss")
+        {
+            Time.timeScale = 0;
+            playerUICanvas.SetActive(false);
+            winScreenCanvas.SetActive(true);
+            
+            Destroy(gameObject);
+        }
+
         if (tag == "Enemy")
         {
             Destroy(gameObject);

@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
 
     public void SceneSelect(int sceneIndex)
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneIndex);
     }
 

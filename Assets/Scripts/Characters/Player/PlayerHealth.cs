@@ -32,7 +32,7 @@ public class PlayerHealth : CharacterHealth
         sceneAudio.Stop();
 
         // Play sfx
-        audioSource.PlayOneShot(sfxDeath, 0.5f);
+        audioSource.PlayOneShot(sfxDeath, 0.25f);
 
         // Insert functionality for player death here
         animator.SetTrigger("exitState");
