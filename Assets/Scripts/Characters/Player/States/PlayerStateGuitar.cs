@@ -26,6 +26,13 @@ public class PlayerStateGuitar : PlayerStateBase
         {
             player.guitarHitBox.enabled = true;
             player.myAnimator.SetTrigger("isAttacking");
+
+            // Player the partical system
+            ParticleSystem particleSystem = player.guitar.GetComponentInChildren<ParticleSystem>();
+            if (particleSystem != null)
+                particleSystem.Play();
+            else
+                Debug.LogWarning("Couldn't find the particle system on the guitar");
         }
     }
 }
