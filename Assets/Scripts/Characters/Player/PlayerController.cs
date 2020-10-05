@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(switchStateSeconds - sfxSwitchWarning.length);
 
         // Play a sound effect
-        audioSource.PlayOneShot(sfxSwitchWarning);
+        //audioSource.PlayOneShot(sfxSwitchWarning);
 
         yield return new WaitForSeconds(sfxSwitchWarning.length);
 
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
         SetState(allStates[currentStateIndex]);
 
         // Play the sound for actually swapping weapons
-        audioSource.PlayOneShot(sfxOnSwitch);
+        //audioSource.PlayOneShot(sfxOnSwitch);
 
         // Repeat the corroutine
         StartCoroutine(CycleStates());

@@ -74,7 +74,7 @@ public class BossController : MonoBehaviour
     void FireWeapon()
     {
         // Play sound effect
-        audioSource.PlayOneShot(sfxTrumpetFire);
+        audioSource.PlayOneShot(sfxTrumpetFire, 0.5f);
 
         // Spawn all the bullets we need and store them into a array
         //List<GameObject>  bullets = new List<GameObject>(player.bulletAmount);

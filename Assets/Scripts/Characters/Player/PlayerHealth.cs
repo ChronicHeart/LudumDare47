@@ -11,6 +11,7 @@ public class PlayerHealth : CharacterHealth
     #endregion
 
     PlayerController playerController;
+    [SerializeField] AudioSource sceneAudio;
 
     bool isDying = false;
 
@@ -27,8 +28,11 @@ public class PlayerHealth : CharacterHealth
             return;
         isDying = true;
 
+        // Stop the game audio to play the death audio
+        sceneAudio.Stop();
+
         // Play sfx
-        audioSource.PlayOneShot(sfxDeath);
+        audioSource.PlayOneShot(sfxDeath, 0.5f);
 
         // Insert functionality for player death here
         animator.SetTrigger("exitState");

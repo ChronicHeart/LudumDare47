@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 10
-  sfxHurt: {fileID: 0}
-  sfxDeath: {fileID: 8300000, guid: 60fa2f9104c76a34ca0e07e076f43363, type: 3}
+  sfxHurt: {fileID: 8300000, guid: 09b6280128ed6bf41a61ed17bee17406, type: 3}
+  sfxDeath: {fileID: 8300000, guid: f16e435fdc39d164a8462cf2248cedde, type: 3}
   myRenderer: {fileID: 4043187113723438659}
 --- !u!114 &5421670207346728190
 MonoBehaviour:

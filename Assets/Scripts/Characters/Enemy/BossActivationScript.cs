@@ -8,6 +8,10 @@ public class BossActivationScript : MonoBehaviour
     BossController boss;            // The boss that we will activate
     [SerializeField]
     GameObject door;                // The door that closes behind the player
+    [SerializeField]
+    AudioSource sceneAudio;
+    [SerializeField]
+    AudioClip bossMusic;
 
     private void Start()
     {
@@ -21,6 +25,9 @@ public class BossActivationScript : MonoBehaviour
         {
             boss.gameObject.SetActive(true);
             door.SetActive(true);
+            sceneAudio.Stop();
+            sceneAudio.clip = bossMusic;
+            sceneAudio.Play();
         }
     }
 }
